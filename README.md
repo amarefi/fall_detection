@@ -1,6 +1,7 @@
 In the name of God.
 
 **Fall Detection using Camera Sensor**
+======================================
 
 in this repository we use pretrained deep neural networks to detect
 human fall in RGB camera videos.
@@ -14,7 +15,8 @@ datasets) with SVMs to detect fall.
 Results show that this method fails to generalize data for new
 environments.
 
-**Pretrained models**
+Pretrained models
+=================
 
 I3D network processes a batch of 64 RGB of optical-flow frames. We use
 model available in \[1\] with only RGB inputs.
@@ -27,7 +29,8 @@ Although C3D networks are very popular in video understanding tasks
 perform well in fall detection task. This could be due to small datasets
 of fall detection or deficiency of C3D model itself.
 
-**Datasets**
+Datasets
+========
 
 Fall detection datasets are few and small. This makes training of any
 machine learning model difficult. Here we use these datasets:
@@ -39,22 +42,32 @@ home\_2: 30, Office:33, coffee\_room\_1: 48)
 \- UR fall detection dataset\[4\] : This dataset contains 70 (30 falls +
 40 activities of daily living) sequences.
 
-**Implementation details**
+Implementation details
+======================
 
-***Making the datasets:*** starting and ending frames of falling down,
-is specified for each video. Labels are in a text file in each dataset
-folder(also in labels folder). Each sample is a clip of video, whose
-length is 64 frames for i3d, and 32,64, \...(according to downsampling
-rate) for c3d. If more than 16 frames of video shows falling *and* more
-than 16 frames of video shows lying on the floor(the stage after
-falling), clip label is positive (and vice versa).
+***Making the datasets:*** 
+---------------------------
 
-***Preprocessing:*** Preprocessing method for I3D model is available in
-\[1\]. for C3D model, some parameters can be changed. Removing
-background(using MOG2 background subtraction method), sampling rate and
-clip stride are some of them.
+starting and ending frames of falling down, is specified for each video.
+Labels are in a text file in each dataset folder(also in labels folder).
+Each sample is a clip of video, whose length is 64 frames for i3d, and
+32,64, \...(according to downsampling rate) for c3d. If more than 16
+frames of video shows falling *and* more than 16 frames of video shows
+lying on the floor(the stage after falling), clip label is positive (and
+vice versa).
 
-***Overview of codes:*** There are 3 files:
+Preprocessing: 
+---------------
+
+Preprocessing method for I3D model is available in \[1\]. for C3D model,
+some parameters can be changed. Removing background(using MOG2
+background subtraction method), sampling rate and clip stride are some
+of them.
+
+Overview of codes: 
+-------------------
+
+There are 3 files:
 
 \- trainsvm.py: Set the parameters here. Features are calculated(and
 saved). On train datasets(which you specify), cross validation is done
@@ -71,8 +84,11 @@ visualization is done by PCA and TSNE method.
 
 \- sport1m\_model.py: for making the C3D model.\[2\]
 
-***How to test the codes:*** You can simply change these settings in
-trainsvm.py or visualization.py code and run with python.
+How to test the codes: 
+-----------------------
+
+You can simply change these settings in trainsvm.py or visualization.py
+code and run with python.
 
 \- options={\'downsample\_rate\':1 , \'background\_sub\':False,
 \'stride\':16, \'model\': \'i3d\'} \# use this parameters for i3d
@@ -149,14 +165,16 @@ combinations.
 \- i3d\_model =
 \"/home/amirhossein/Desktop/implement/i3d-kinetics-400\_1\"
 
-**Results**
+Results
+=======
 
 During cross validation, best parameters will be determined. Our metric
 is (1-falseAlarm)\*sensitivity.
 
 Then this metric is computed for test datasets and will be reported.
 
-**I3D**
+I3D
+---
 
 *train\_dataset:\[\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'\] *
 
@@ -199,17 +217,20 @@ As you can see, positive samples of each folder are in a distinct part
 of space. So if we train a classifier to use these samples to classify
 for an environment, it won't be good for another environment.
 
-![](./images/dic/media/image1.png){width="6.6930555555555555in"
+![](./images/media/image1.png){width="6.6930555555555555in"
 height="4.990972222222222in"}
 
-![](./images/dic/media/image2.png){width="6.6930555555555555in"
+![](./images/media/image2.png){width="6.6930555555555555in"
 height="4.422916666666667in"}
 
-**C3D**
+C3D
+---
 
-**Discussion**
+Discussion
+==========
 
-**References**
+References
+==========
 
 \[1\]
 [https://www.tensorflow.org/hub/tutorials/action\_recognition\_with\_tf\_hub]{.underline}
