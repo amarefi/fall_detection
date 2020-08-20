@@ -3,17 +3,12 @@ In the name of God.
 **Fall Detection using Camera Sensor**
 ======================================
 
-in this repository we use pretrained deep neural networks to detect
-human fall in RGB camera videos.
-
-Detecting falling down of elderly people who live alone is useful to
-speed up emergency aids.
-
-We finetune C3D and I3D networks (pretrained on action recognition
-datasets) with SVMs to detect fall.
-
-Results show that this method fails to generalize data for new
-environments.
+In this repository we use pretrained deep neural networks to detect
+human fall in RGB camera videos. Detecting falling down of elderly
+people who live alone is useful to speed up emergency aids. We finetune
+C3D and I3D networks (pretrained on action recognition datasets) with
+SVMs to detect fall. Results show that this method fails to generalize
+data for new environments.
 
 Pretrained models
 =================
@@ -179,6 +174,14 @@ I3D
 *train\_dataset:\[\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'\] *
 
 *test\_dataset:\[\'Office\', \'Home\_02\', \'Home\_01\'\]*
+
+  -------------------------- ------- --------------------------------------------------------
+  Datasets:                  train   *\[\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'\] *
+                             test    *\[\'Office\', \'Home\_02\', \'Home\_01\'\]*
+  Parameters in validation           
+                                     
+                                     
+  -------------------------- ------- --------------------------------------------------------
 
 best parameters in validation C 30 gamma 0.1 score(sens\*falarm
 0.7552989560265738
