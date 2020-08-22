@@ -59,8 +59,8 @@ some parameters can be changed. Removing background(using MOG2
 background subtraction method), sampling rate and clip stride are some
 of them.
 
-*Overview of codes: *
----------------------
+*Overview of codes:*
+--------------------
 
 There are 3 files:
 
@@ -79,8 +79,8 @@ visualization is done by PCA and TSNE method.
 
 \- sport1m\_model.py: for making the C3D model.\[2\]
 
-*How to test the codes: *
--------------------------
+*How to test the codes:* 
+------------------------
 
 You can simply change these settings in trainsvm.py or visualization.py
 code and run with python.
@@ -161,7 +161,7 @@ combinations.
 \"/home/amirhossein/Desktop/implement/i3d-kinetics-400\_1\"
 
 *SVM*
------
+------
 
 We use SVM(support vector machines) with RBF kernels to finetune models.
 In cross validation, C and gamma hyper-parameters are chosen.
