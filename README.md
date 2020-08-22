@@ -37,11 +37,11 @@ home\_2: 30, Office:33, coffee\_room\_1: 48)
 \- UR fall detection dataset\[4\] : This dataset contains 70 (30 falls +
 40 activities of daily living) sequences.
 
-Implementation details
-======================
+4.  Implementation details
+    ======================
 
-***Making the datasets:*** 
----------------------------
+    1.  ***Making the datasets:*** 
+        ---------------------------
 
 starting and ending frames of falling down, is specified for each video.
 Labels are in a text file in each dataset folder(also in labels folder).
@@ -51,16 +51,16 @@ frames of video shows falling *and* more than 16 frames of video shows
 lying on the floor(the stage after falling), clip label is positive (and
 vice versa).
 
-Preprocessing: 
----------------
+*Preprocessing:* 
+-----------------
 
 Preprocessing method for I3D model is available in \[1\]. for C3D model,
 some parameters can be changed. Removing background(using MOG2
 background subtraction method), sampling rate and clip stride are some
 of them.
 
-Overview of codes: 
--------------------
+*Overview of codes: *
+---------------------
 
 There are 3 files:
 
@@ -79,8 +79,8 @@ visualization is done by PCA and TSNE method.
 
 \- sport1m\_model.py: for making the C3D model.\[2\]
 
-How to test the codes: 
------------------------
+*How to test the codes: *
+-------------------------
 
 You can simply change these settings in trainsvm.py or visualization.py
 code and run with python.
@@ -168,49 +168,40 @@ is (1-falseAlarm)\*sensitivity.
 
 Then this metric is computed for test datasets and will be reported.
 
-I3D
----
+*I3D*
+-----
 
-*train\_dataset:\[\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'\] *
+train\_dataset: \'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'
 
-*test\_dataset:\[\'Office\', \'Home\_02\', \'Home\_01\'\]*
+test\_dataset:\'Office\', \'Home\_02\', \'Home\_01\'
 
-  -------------------------- ------- --------------------------------------------------------
-  Datasets:                  train   *\[\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'\] *
-                             test    *\[\'Office\', \'Home\_02\', \'Home\_01\'\]*
-  Parameters in validation           
-                                     
-                                     
-  -------------------------- ------- --------------------------------------------------------
-
-best parameters in validation C 30 gamma 0.1 score(sens\*falarm
-0.7552989560265738
+  ----------------------------------- ------ ------------
+  Best SVM Parameters in validation   C=30   Gamma= 0.1
+  Validation score:                   0.76   
+  Test score:                         0.39   
+  ----------------------------------- ------ ------------
 
 tot 1625 alarm 44 f alrm 142 miss 59 else 1380
 
 SVMscore0.876 sens0.427 falarm0.0933 c,g \[30, 0.1\]
 
-\[\[0, 0.38732888508987917\]\]
+train\_dataset:\'Office\', \'Home\_02\', \'Home\_01\'\]
 
-Final Best Layer 0 sens\*falarm 0.387
+test\_dataset:\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'
 
-*train\_dataset:\[\'Office\', \'Home\_02\', \'Home\_01\'\] *
-
-*test\_dataset:\[\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'\]*
-
-best parameters in validation C 100 gamma 0.1 score(sens\*falarm
-0.8254098360655737
+  ----------------------------------- ------- ------------
+  Best SVM Parameters in validation   C=100   Gamma= 0.1
+  Validation score:                   0.83    
+  Test score:                         0.63    
+  ----------------------------------- ------- ------------
 
 tot 1235 alarm 99 f alrm 292 miss 18 else 826
 
 SVMscore0.749 sens0.846 falarm0.261 c,g \[100, 0.1\]
 
-\[\[0, 0.6251548094124123\]\]
-
-Final Best Layer 0 sens\*falarm 0.625
-
 Result scores are not high. And by changing train and test datasets,
-scores will highly change. So models are not robust to environments.
+scores will highly change. So models are not robust to environments (or
+at least, UR dataset videos couldn't be generalized.).
 
 Results show that by changing environments, models loose their accuracy.
 Looking into visualizations(with TSNE methods) of I3D outputs, also
@@ -226,22 +217,77 @@ height="4.990972222222222in"}
 ![](./images/media/image2.png){width="6.6930555555555555in"
 height="4.422916666666667in"}
 
-C3D
----
+*C3D*
+-----
 
-Discussion
-==========
+  ------------------------------------------------ ------ ------------
+  Experiment with layer ... of C3D model output.          
+  Best SVM Parameters in validation                C=30   Gamma= 0.1
+  Validation score:                                0.76   
+  Test score:                                      0.39   
+  ------------------------------------------------ ------ ------------
 
-References
-==========
+  ------------------------------------------------ ------ ------------
+  Experiment with layer ... of C3D model output.          
+  Best SVM Parameters in validation                C=30   Gamma= 0.1
+  Validation score:                                0.76   
+  Test score:                                      0.39   
+  ------------------------------------------------ ------ ------------
+
+  ------------------------------------------------ ------ ------------
+  Experiment with layer ... of C3D model output.          
+  Best SVM Parameters in validation                C=30   Gamma= 0.1
+  Validation score:                                0.76   
+  Test score:                                      0.39   
+  ------------------------------------------------ ------ ------------
+
+  ------------------------------------------------ ------ ------------
+  Experiment with layer ... of C3D model output.          
+  Best SVM Parameters in validation                C=30   Gamma= 0.1
+  Validation score:                                0.76   
+  Test score:                                      0.39   
+  ------------------------------------------------ ------ ------------
+
+6.  Discussion
+    ==========
+
+    References
+    ==========
 
 \[1\]
-[https://www.tensorflow.org/hub/tutorials/action\_recognition\_with\_tf\_hub]{.underline}
+[[https://www.tensorflow.org/hub/tutorials/action\_recognition\_with\_tf\_hub]{.underline}](https://www.tensorflow.org/hub/tutorials/action_recognition_with_tf_hub)
 
 \[2\]
+[[https://github.com/aslucki/C3D\_Sport1M\_keras]{.underline}](https://github.com/aslucki/C3D_Sport1M_keras)
 
 \[3\]
 [[http://le2i.cnrs.fr/Fall-detection-Dataset?lang=fr]{.underline}](http://le2i.cnrs.fr/Fall-detection-Dataset?lang=fr)
 
 \[4\]
 [[http://fenix.univ.rzeszow.pl/\~mkepski/ds/uf.html]{.underline}](http://fenix.univ.rzeszow.pl/~mkepski/ds/uf.html)
+
+citation
+========
+
+If you use this code base in your work, please cite
+
+\@software{FallDetectionUsingCaemraSensor,
+
+author = {Amirhossein Arefipour and Hoda Mohammadzadeh},
+
+title = {Fall Detection using Camera Sensor},
+
+url =
+{[[https://github.com/amarefi/fall\_detection]{.underline}](https://github.com/amarefi/fall_detection)},
+
+version = {1.0}
+
+year = {2020},
+
+}
+
+contact
+=======
+
+For questions about our paper or code, please contact [[A.
+Arefipour]{.underline}](mailto:arefipour.amirhossein@ee.sharif.ir)
