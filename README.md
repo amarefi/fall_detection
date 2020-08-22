@@ -160,6 +160,18 @@ combinations.
 \- i3d\_model =
 \"/home/amirhossein/Desktop/implement/i3d-kinetics-400\_1\"
 
+*SVM*
+-----
+
+We use SVM(support vector machines) with RBF kernels to finetune models.
+In cross validation, C and gamma hyper-parameters are chosen.
+
+(we test these values:
+
+\'C\': \[0.001,0.1,1,10,20,30,40,60,80,100\],
+
+\'gamma\': \[0.1,0.01,0.001,0.0001,0.00006,0.00003,0.00001\] )
+
 Results
 =======
 
@@ -175,11 +187,8 @@ train\_dataset: \'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'
 
 test\_dataset:\'Office\', \'Home\_02\', \'Home\_01\'
 
-  ----------------------------------- ------ ------------
-  Best SVM Parameters in validation   C=30   Gamma= 0.1
-  Validation score:                   0.76   
-  Test score:                         0.39   
-  ----------------------------------- ------ ------------
+![](./images/media/image1.png){width="6.6930555555555555in"
+height="0.6659722222222222in"}
 
 tot 1625 alarm 44 f alrm 142 miss 59 else 1380
 
@@ -189,13 +198,9 @@ train\_dataset:\'Office\', \'Home\_02\', \'Home\_01\'\]
 
 test\_dataset:\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'
 
-  ----------------------------------- ------- ------------
-  Best SVM Parameters in validation   C=100   Gamma= 0.1
-  Validation score:                   0.83    
-  Test score:                         0.63    
-  ----------------------------------- ------- ------------
-
-tot 1235 alarm 99 f alrm 292 miss 18 else 826
+![](./images/media/image2.png){width="6.6930555555555555in"
+height="0.5923611111111111in"}tot 1235 alarm 99 f alrm 292 miss 18 else
+826
 
 SVMscore0.749 sens0.846 falarm0.261 c,g \[100, 0.1\]
 
@@ -211,48 +216,52 @@ As you can see, positive samples of each folder are in a distinct part
 of space. So if we train a classifier to use these samples to classify
 for an environment, it won't be good for another environment.
 
-![](./images/media/image1.png){width="6.6930555555555555in"
+![](./images/media/image3.png){width="6.6930555555555555in"
 height="4.990972222222222in"}
 
-![](./images/media/image2.png){width="6.6930555555555555in"
+![](./images/media/image4.png){width="6.6930555555555555in"
 height="4.422916666666667in"}
 
 *C3D*
 -----
 
-  ------------------------------------------------ ------ ------------
-  Experiment with layer ... of C3D model output.          
-  Best SVM Parameters in validation                C=30   Gamma= 0.1
-  Validation score:                                0.76   
-  Test score:                                      0.39   
-  ------------------------------------------------ ------ ------------
+train\_dataset:\[\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'\]
 
-  ------------------------------------------------ ------ ------------
-  Experiment with layer ... of C3D model output.          
-  Best SVM Parameters in validation                C=30   Gamma= 0.1
-  Validation score:                                0.76   
-  Test score:                                      0.39   
-  ------------------------------------------------ ------ ------------
+test\_dataset:\[\'Office\', \'Home\_02\', \'Home\_01\'\]
 
-  ------------------------------------------------ ------ ------------
-  Experiment with layer ... of C3D model output.          
-  Best SVM Parameters in validation                C=30   Gamma= 0.1
-  Validation score:                                0.76   
-  Test score:                                      0.39   
-  ------------------------------------------------ ------ ------------
+( in code, layer numbers are as follows: 0:fc6, 1:flat5, 2:fc7, 3:fc8 )
 
-  ------------------------------------------------ ------ ------------
-  Experiment with layer ... of C3D model output.          
-  Best SVM Parameters in validation                C=30   Gamma= 0.1
-  Validation score:                                0.76   
-  Test score:                                      0.39   
-  ------------------------------------------------ ------ ------------
+experiment with different C3D model output layers:
 
-6.  Discussion
-    ==========
+![](./images/media/image5.png){width="6.6930555555555555in"
+height="2.220833333333333in"}
 
-    References
-    ==========
+train\_dataset:\[\'Office\', \'Home\_02\', \'Home\_01\'\]
+
+test\_dataset:\[\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'\]
+
+experiment with different C3D model output layers:
+
+![](./images/media/image6.png){width="6.6930555555555555in"
+height="2.192361111111111in"}
+
+Here, the problem is that cross validation leads to bad parameters! If
+we ignore CV, then above discussion(for I3D) also holds here and C3D
+model is worse than I3D.
+
+![](./images/media/image7.png){width="6.552083333333333in"
+height="5.229166666666667in"}
+
+Discussion
+==========
+
+We finetune I3D and C3D pretrained models for fall detection in RGB
+cameras. The results of C3D model are really bad! But I3D model has
+better(but not acceptable) performance, although models trained in one
+environment are not generalizable(with a good score) in others.
+
+References
+==========
 
 \[1\]
 [[https://www.tensorflow.org/hub/tutorials/action\_recognition\_with\_tf\_hub]{.underline}](https://www.tensorflow.org/hub/tutorials/action_recognition_with_tf_hub)
