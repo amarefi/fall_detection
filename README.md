@@ -187,8 +187,7 @@ train\_dataset: \'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'
 
 test\_dataset:\'Office\', \'Home\_02\', \'Home\_01\'
 
-![](./images/media/image1.png){width="6.6930555555555555in"
-height="0.6659722222222222in"}
+![](./images/media/image1.png)
 
 tot 1625 alarm 44 f alrm 142 miss 59 else 1380
 
@@ -198,8 +197,8 @@ train\_dataset:\'Office\', \'Home\_02\', \'Home\_01\'\]
 
 test\_dataset:\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'
 
-![](./images/media/image2.png){width="6.6930555555555555in"
-height="0.5923611111111111in"}tot 1235 alarm 99 f alrm 292 miss 18 else
+![](./images/media/image2.png)
+tot 1235 alarm 99 f alrm 292 miss 18 else
 826
 
 SVMscore0.749 sens0.846 falarm0.261 c,g \[100, 0.1\]
@@ -216,11 +215,9 @@ As you can see, positive samples of each folder are in a distinct part
 of space. So if we train a classifier to use these samples to classify
 for an environment, it won't be good for another environment.
 
-![](./images/media/image3.png){width="6.6930555555555555in"
-height="4.990972222222222in"}
+![](./images/media/image3.png)
 
-![](./images/media/image4.png){width="6.6930555555555555in"
-height="4.422916666666667in"}
+![](./images/media/image4.png)
 
 *C3D*
 -----
@@ -233,8 +230,7 @@ test\_dataset:\[\'Office\', \'Home\_02\', \'Home\_01\'\]
 
 experiment with different C3D model output layers:
 
-![](./images/media/image5.png){width="6.6930555555555555in"
-height="2.220833333333333in"}
+![](./images/media/image5.png)
 
 train\_dataset:\[\'Office\', \'Home\_02\', \'Home\_01\'\]
 
@@ -242,15 +238,13 @@ test\_dataset:\[\'ur\_fall\', \'ur\_adl\', \'Coffee\_room\_01\'\]
 
 experiment with different C3D model output layers:
 
-![](./images/media/image6.png){width="6.6930555555555555in"
-height="2.192361111111111in"}
+![](./images/media/image6.png)
 
 Here, the problem is that cross validation leads to bad parameters! If
 we ignore CV, then above discussion(for I3D) also holds here and C3D
 model is worse than I3D.
 
-![](./images/media/image7.png){width="6.552083333333333in"
-height="5.229166666666667in"}
+![](./images/media/image7.png)
 
 Discussion
 ==========
