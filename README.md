@@ -37,11 +37,11 @@ home\_2: 30, Office:33, coffee\_room\_1: 48)
 \- UR fall detection dataset\[4\] : This dataset contains 70 (30 falls +
 40 activities of daily living) sequences.
 
-4.  Implementation details
-    ======================
+Implementation details
+======================
 
-    1.  ***Making the datasets:*** 
-        ---------------------------
+*Making the datasets:*
+----------------------
 
 starting and ending frames of falling down, is specified for each video.
 Labels are in a text file in each dataset folder(also in labels folder).
